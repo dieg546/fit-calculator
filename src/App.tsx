@@ -1,38 +1,45 @@
 import Form from "./components/Form"
+import { useReducer } from "react"
+import { ActivityReducer, initialState } from "./reducers/ActivityReducer"
 
 function App() {
   
+    const [state, dispatch] = useReducer(ActivityReducer, initialState)
 
-  return (
-    <>
-      <header className=" bg-lime-600 py-3">
+    return (
+      <>
+        <header className=" bg-lime-600 py-3">
 
-        <div className=" max-w-4xl mx-auto flex justify-between">
+          <div className=" max-w-4xl mx-auto flex justify-between">
 
-          <h1 className=" text-center text-lg font-bold text-white uppercase">
-            Contador de calorias
-          </h1>
+            <h1 className=" text-center text-lg font-bold text-white uppercase">
+              Contador de calorias
+            </h1>
 
-        </div>
+          </div>
 
-      </header>
+        </header>
 
-      <section className=" bg-lime-500 py-20 px-5">
+        <section className=" bg-lime-500 py-20 px-5">
 
-        <div className=" max-w-4xl mx-auto">
+          <div className=" max-w-4xl mx-auto">
 
-          <p>
+            
 
-            <Form/>
+            <Form
+            
+              dispatch={dispatch}
 
-          </p>
+            />
 
-        </div>
+            
 
-      </section>
+          </div>
 
-    </>
-  )
+        </section>
+
+      </>
+    )
 }
 
 export default App
