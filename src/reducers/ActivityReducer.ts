@@ -1,4 +1,3 @@
-import { Activity } from "react"
 import type { Actividad } from "../types/Index"
 
 export type ActivityActions = 
