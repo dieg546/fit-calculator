@@ -3,19 +3,16 @@ import type { Actividad } from "../types/Index"
 import { categories } from "../data/Categories"
 import { PencilSquareIcon, TrashIcon } from "@heroicons/react/20/solid"
 import type { ActivityActions } from "../reducers/ActivityReducer"
+import { useActivity } from "../hooks/useActivity"
 
-type ActivityProps={
 
-    activities: Actividad[]
-    dispatch: Dispatch<ActivityActions>
+export default function ActivityList() {
 
-}
-
-export default function ActivityList({activities,dispatch}: ActivityProps) {
+    const {state, dispatch} = useActivity()
 
     const categoryName = useMemo(() => 
         (category: Actividad['category']) => categories.map(cat => cat.id === category? cat.name : '')
-    ,[activities])
+    ,[state.activities])
 
 
     const handleClickPencil= (idActivity: Actividad['id']) =>{
@@ -32,7 +29,7 @@ export default function ActivityList({activities,dispatch}: ActivityProps) {
 
     }
 
-    const emptyList = useMemo(()=> activities.length===0,[activities])
+    const emptyList = useMemo(()=> state.activities.length===0,[state.activities])
 
     return (
         <>
@@ -47,7 +44,7 @@ export default function ActivityList({activities,dispatch}: ActivityProps) {
 
                 <p className=" py-5 text-center font-black text-2xl">No hay Actividades aun</p>:
 
-                activities.map(activity=>(
+                state.activities.map(activity=>(
 
                     <div 
                         className="px-5 py-10 bg-slate-100 mt-5 flex justify-between"

@@ -3,13 +3,8 @@ import { v4 as uuidv4 } from "uuid"
 import { categories } from "../data/Categories"
 import type { Actividad } from "../types/Index"
 import type { ActivityActions, ActivityState } from "../reducers/ActivityReducer"
+import { useActivity } from "../hooks/useActivity"
 
-type FormProps={
-
-    dispatch: Dispatch<ActivityActions>,
-    state: ActivityState
-
-}
 
 const initialState: Actividad={
 
@@ -20,9 +15,11 @@ const initialState: Actividad={
 
 }
 
-export default function Form({dispatch,state}: FormProps) {
+export default function Form() {
 
     const [actividad, setActividad] = useState<Actividad>(initialState)
+    
+    const {state,dispatch} = useActivity()
 
     useEffect(()=>{
 
